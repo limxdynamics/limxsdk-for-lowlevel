@@ -12,6 +12,7 @@
 #include <stdint.h>
 #include <vector>
 #include <memory>
+#include <string>
 
 namespace limxsdk {
   /**
@@ -63,7 +64,52 @@ namespace limxsdk {
     std::vector<float> Kd;      // Vector storing the desired velocity stiffness (in Newton meters per radian per second).
   };     
   typedef std::shared_ptr<RobotCmd> RobotCmdPtr;
-  typedef std::shared_ptr<RobotCmd const> RobotCmdConstPtr;                
+  typedef std::shared_ptr<RobotCmd const> RobotCmdConstPtr;  
+
+  /**
+   * @struct SensorJoy
+   *
+   * @brief Structure representing sensor inputs from robot joystick.
+   *
+   * This structure contains timestamp information along with axis and button values obtained from a joystick sensor.
+   */
+  struct SensorJoy {
+      uint64_t stamp;            // Timestamp in nanoseconds, associated with the sensor input.
+      std::vector<float> axes;   // Values representing the positions of the joystick axes.
+      std::vector<int32_t> buttons;  // Values representing the state of joystick buttons.
+  };       
+  typedef std::shared_ptr<SensorJoy> SensorJoyPtr;
+  typedef std::shared_ptr<SensorJoy const> SensorJoyConstPtr;
+
+  /**
+   * @struct DiagnosticValue
+   *
+   * @brief Structure representing diagnostic values.
+   *
+   * This structure contains information about the diagnostic level, name, code, and message.
+   */
+  struct DiagnosticValue {
+    #if defined(_WIN32) && defined(OK)
+      #undef OK
+    #endif
+    #if defined(_WIN32) && defined(WARN)
+      #undef WARN
+    #endif
+    #if defined(_WIN32) && defined(ERROR)
+      #undef ERROR
+    #endif
+    enum { OK = 0 };
+    enum { WARN = 1 };
+    enum { ERROR = 2 };
+
+    uint64_t stamp;         // Timestamp in nanoseconds.
+    int32_t level;          // Level associated with the diagnostic value.
+    std::string name;       // Name identifying the diagnostic value.
+    int32_t code;           // Code corresponding to the diagnostic value.
+    std::string message;    // Detailed message related to the diagnostic value.
+  };
+  typedef std::shared_ptr<DiagnosticValue> DiagnosticValuePtr;
+  typedef std::shared_ptr<DiagnosticValue const> DiagnosticValueConstPtr;
 };
 
 #endif

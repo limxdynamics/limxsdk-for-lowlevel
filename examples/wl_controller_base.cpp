@@ -16,8 +16,10 @@
 ControllerBase::ControllerBase()
     : robot_cmd_(16)
 {
-  loadParameters();
   wl_ = limxsdk::WheelLegged::getInstance();
+  
+  loadParameters();
+
   wl_->subscribeRobotState(std::bind(&ControllerBase::robotStateCallback, this, std::placeholders::_1));
 }
 
@@ -43,6 +45,15 @@ void ControllerBase::startLoop()
 
 void ControllerBase::loadParameters()
 {
+  std::vector<float> offset;
+  joint_offset_.resize(robot_cmd_.q.size());
+  if (wl_->getJointOffset(offset)) {
+    joint_offset_ << offset[0], offset[1], offset[2], offset[3],
+        offset[4], offset[5], offset[6], offset[7],
+        offset[8], offset[9], offset[10], offset[11],
+        offset[12], offset[13], offset[14], offset[15];
+  }
+
   joint_kp_.resize(robot_cmd_.Kp.size());
   joint_kp_ = Eigen::VectorXd::Constant(robot_cmd_.Kp.size(), 600);
   joint_kd_.resize(robot_cmd_.Kd.size());
@@ -53,12 +64,6 @@ void ControllerBase::loadParameters()
       4.5, 4.5, 4.5, 0.6,
       4.5, 4.5, 4.5, 0.6,
       4.5, 4.5, 4.5, 0.6;
-
-  joint_offset_.resize(robot_cmd_.q.size());
-  joint_offset_ << 0, 0, 0, 0,
-      0, 0, 0, 0,
-      0, 0, 0, 0,
-      0, 0, 0, 0;
 
   home_q_.resize(robot_cmd_.q.size());
   home_q_ << 0.5, 1.3, 0, 0,

@@ -10,6 +10,7 @@ include_directories(${EIGEN3_INCLUDE_DIR})
 set(SRCS
   ./common/util.cpp
   ./wl_controller_base.cpp
+  ./pf_controller_base.cpp
 )
 
 if (WIN32)
@@ -36,7 +37,11 @@ add_executable(wl_sitdown wl_sitdown.cpp)
 target_link_libraries(wl_sitdown ${LINK_LIBS})
 install(TARGETS wl_sitdown DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
-add_executable(pointfoot_example pointfoot_example.cpp)
-target_link_libraries(pointfoot_example ${LINK_LIBS})
-install(TARGETS pointfoot_example DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+add_executable(pf_joint_move pf_joint_move.cpp)
+target_link_libraries(pf_joint_move ${LINK_LIBS})
+install(TARGETS pf_joint_move DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+
+add_executable(pf_groupJoints_move pf_groupJoints_move.cpp)
+target_link_libraries(pf_groupJoints_move ${LINK_LIBS})
+install(TARGETS pf_groupJoints_move DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 

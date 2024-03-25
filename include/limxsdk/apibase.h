@@ -30,7 +30,7 @@ namespace limxsdk {
        *        This method should specify the operations to be performed before using the object in the main function.
        * @param robot_ip_address The IP address of the robot.
        *                         For simulation, it is typically set to "127.0.0.1",
-       *                         while for a real robot, it may be set to "192.168.1.2".
+       *                         while for a real robot, it may be set to "10.192.1.2".
        * @return True if init successfully, otherwise false.
        */
       virtual bool init(const std::string& robot_ip_address);

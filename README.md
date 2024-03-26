@@ -333,5 +333,5 @@ namespace limxsdk {
 
 
 
-## 5. [Python 接口](https://github.com/limxdynamics/limxsdk-for-lowlevel/python3/README.md) 
+## 5. [Python 接口]([https://github.com/limxdynamics/limxsdk-for-lowlevel/blob/main/python3/README.md])) 
 

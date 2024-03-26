@@ -31,11 +31,6 @@ if (DEFINED CATKIN_DEVEL_PREFIX)
     add_custom_target(pointfoot_lowlevel_target ALL
       COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIB_PATH}/liblimx_robot_sdk.so ${CATKIN_DEVEL_PREFIX}/lib
     )
-  elseif (${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm")
-    set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib/arm32)
-    add_custom_target(pointfoot_lowlevel_target ALL
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIB_PATH}/liblimx_robot_sdk.so ${CATKIN_DEVEL_PREFIX}/lib
-    )
   elseif (${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
     set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib/amd64)
     add_custom_target(pointfoot_lowlevel_target ALL
@@ -60,8 +55,6 @@ if (DEFINED CATKIN_DEVEL_PREFIX)
 else()
   if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "aarch64")
     set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib/aarch64)
-  elseif (${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm")
-    set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib/arm32)
   elseif (${CMAKE_SYSTEM_PROCESSOR} MATCHES "x86_64")
     set(LIB_PATH ${PROJECT_SOURCE_DIR}/lib/amd64)
   elseif (WIN32)

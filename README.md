@@ -71,8 +71,7 @@
 
 
 
-
-# 4. 轮足接口介绍
+## 3. 轮足接口介绍
 
 ```
 /**
@@ -205,7 +204,7 @@ namespace limxsdk {
 
 
 
-# 5. 点足接口介绍
+## 4. 点足接口介绍
 
 ```
 /**
@@ -331,4 +330,8 @@ namespace limxsdk {
 
 #endif
 ```
+
+
+
+## 5. [Python 接口](https://github.com/limxdynamics/limxsdk-for-lowlevel/python3/README.md) 
 
